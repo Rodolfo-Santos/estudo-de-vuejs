@@ -14,6 +14,8 @@ import CursoDescricao from "./components/Cursos/CursoDescricao.vue"
 import Acoes from "./views/_Router/Acoes.vue"
 import AcoesDados from "./components/Acoes/AcoesDados.vue"
 
+import Footer from "./components/NamedRouter/Footer.vue"
+
 Vue.use(Router)
 
 export default new Router({
@@ -22,18 +24,21 @@ export default new Router({
 
   routes: [{
       path: "/",
-      component: Home
+      components: {
+        default: Home,
+        footer: Footer
+      }
+    },
+
+    {
+      path: "*",
+      redirect: "/"
     },
 
     {
       path: "/cursos",
       component: Cursos,
       props: true,
-      beforeEnter: (to, from, next) => {
-        console.log("Foi para cursos")
-        next()
-      },
-
       children: [{
         name: "curso",
         path: ":curso",
@@ -77,6 +82,15 @@ export default new Router({
         props: true
       }]
     },
-
-  ]
+  ],
+  scrollBehavior() {
+    // return {
+    //   x: 0,
+    //   y: 0
+    // }
+    return window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 })

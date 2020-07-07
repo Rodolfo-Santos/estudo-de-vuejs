@@ -40,6 +40,7 @@
       <transition appear mode="out-in">
         <router-view></router-view>
       </transition>
+      <router-view name="footer"></router-view>
     </b-container>
   </div>
 </template>
