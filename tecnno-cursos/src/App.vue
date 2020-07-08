@@ -1,32 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Header />
+    <RouterView class="container" />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Header from "@/components/Header.vue";
+export default {
+  components: {
+    Header
+  }
+};
+</script>
+
+<style lang="scss">
+body {
+  margin: 0px;
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  color: #234;
 }
 
-#nav {
-  padding: 30px;
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 
-#nav a {
+a {
   font-weight: bold;
-  color: #2c3e50;
+  text-decoration: none;
+  color: #234;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translate3d(-20px, 0, 0);
+}
+
+.v-enter-active {
+  transition: all 0.3s;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 400px);
+  grid-gap: 30px;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+  }
 }
 </style>
